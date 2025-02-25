@@ -15,12 +15,10 @@ public class JdbcCursorReaderConfig {
 
     @Bean
     public JdbcCursorItemReader<Cliente> jdbcCursorReader(@Qualifier("appDataSource") DataSource dataSource) {
-        String sql = "select * from cliente";
-
         return new JdbcCursorItemReaderBuilder<Cliente>()
                 .name("jdbcCursorReader")
                 .dataSource(dataSource)
-                .sql(sql)
+                .sql("select * from cliente")
                 .rowMapper(new BeanPropertyRowMapper<Cliente>(Cliente.class))
                 .build();
 
